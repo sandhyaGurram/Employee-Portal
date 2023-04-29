@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <br>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Add Employee Here</h3>
+                </div>
+                <div class="card-body">
+                <form action="/" method="post">
+                    {% csrf_token %}
+                    
+                    <input type="text"  name="fname" placeholder="Full Name"><br><br>
+                    <input type="email" name="email" placeholder="Email"><br><br>
+                    <input type="number"  name="phone" placeholder="Phone No."><br><br>
+                    <input type="text"  name="experiance" placeholder="Experiance"><br><br>
+                    <input type="text"  name="skills" placeholder="Skills"><br><br>
+                    <input type="text"  name="role" placeholder="Role"><br><br>
+                    <input type="text"  name="location" placeholder="Location"><br><br>
+                    <input type="submit" name="Create Employee" ><br>
+                    
+                </form>
+                </div>
+            </div>
+            
+        </div>
+        <!-- <div class="card">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div> -->
+    
+    
+        <div class="col-md-9">
+            <h3>All Employee Details Here</h3>
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone No.</th>
+                    <th scope="col">Experiance</th>
+                    <th scope="col">Skills</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Location</th>
+                    
+                  </tr>
+                </thead>
+                {% for emps in emp %}
+                <tbody>
+                  <tr>
+                    <td><a href="{% url 'view_emp' emps.id %}"> {{emps.id}}</a></td>
+                    <td>{{emps.fname}}</td>
+                    <td>{{emps.email}}</td>
+                    <td>{{emps.phone}}</td>
+                    <td>{{emps.experiance}}</td>
+                    <td>{{emps.skills}}</td>
+                    <td>{{emps.role}}</td>
+                    
+                    
+                    
+                    <td>{{emps.location}}</td>
+                    
+                  </tr>
+                </tbody>
+                        {% endfor %}
+              </table>
+            <!-- {% for emps in emp %}
+                <p>{{emps.fname}}</p>
+                <p>{{emps.email}}</p>
+                <p>{{emps.phone}}</p>
+                <p>{{emps.skills}}</p>
+                <p>{{emps.role}}</p>
+                
+            {% endfor %} -->
+        </div>
+    </div>
+</div>
+{% endblock %}
